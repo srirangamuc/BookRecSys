@@ -175,7 +175,7 @@ def build_cosine_model(tfidf_matrix):
     return cosine_sim_matrix_df
 
 def find_optimal_num_of_clusters(cosine_sim_df):
-    X = np.array(cosine_sim_df)  # Convert to numpy array
+    X = np.array(cosine_sim_df)
     for k in NUM_CLUSTERS:
         print(f'Cluster {k}/40')
         kmeans = KMeans(n_clusters=k, **CLUSTER_PARAMS)
@@ -184,38 +184,3 @@ def find_optimal_num_of_clusters(cosine_sim_df):
         clear_output(wait=True)
     locator = KneeLocator(NUM_CLUSTERS, SSE, curve='convex', direction='decreasing')
     print('Best Cluster for KMeans: ', locator.elbow)
- 
-# df = load_data()
-
-# print('Cleaning Dataset')
-# print('Cleaning Ratings')
-# df = clean_ratings(df)
-
-# print('Cleaning Genre')
-# df = clean_genre(df)
-
-# print("Starting Text Preprocessing.....")
-# df['keywords'] = df['description'].apply(lambda x: TextPreprocessor(x).parse_text())
-
-# print('Making Weighted Ratings')
-# rating_mean = np.mean(df['Rating_cleaned'])
-# min_rating = np.min(df['Rating_cleaned'])
-# df['weighted_rating'] = weighted_rating(df['rating'], df['Rating_cleaned'],rating_mean,min_rating) / 1e6
-# print(df[['title','weighted_rating']].head())
-
-# print('Building Final Dataset')
-# final_df = build_final_dataset(df)
-
-# print('Building Cosine Matrix')
-# tfidf_matrix = vectorize_data(final_df)
-# cosine_sim_df = build_cosine_model(tfidf_matrix)
-
-# print('Finding Optimal Number of Clusters')
-# # find_optimal_num_of_clusters(cosine_sim_df)
-# print('Model Building Complete')
-
-# kmeans = KMeans(n_clusters=8, **CLUSTER_PARAMS)
-# X = np.array(cosine_sim_df)
-# kmeans.fit(X)
-# final_df['cluster'] = kmeans.labels
-# print(final_df.head())

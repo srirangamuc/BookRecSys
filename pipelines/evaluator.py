@@ -21,14 +21,14 @@ def get_recommendations(df, title, cosine_sim, map, top_n=10):
     
     return recommendations
 
-def get_relevant_items(df, title, cosine_sim, map, cluster, threshold=0.5):
+def get_relevant_items(df, title, cosine_sim, map, cluster, threshold=0.3):
     recommendations = get_recommendations(df, title, cosine_sim, map)
     relevant_items = recommendations.loc[
         (recommendations['cluster'] == cluster) & (recommendations['score'] > threshold)
     ]
     return relevant_items
 
-def relevant_and_recommended(df, title, cosine_sim, map, threshold=0.5, top_n=10):
+def relevant_and_recommended(df, title, cosine_sim, map, threshold=0.3, top_n=10):
     # Get the cluster of the input book
     book_index = map[title]
     cluster = df.loc[book_index, 'cluster']
