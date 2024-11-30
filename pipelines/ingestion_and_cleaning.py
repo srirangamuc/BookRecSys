@@ -2,8 +2,6 @@ import pandas as pd
 import numpy as np
 import re
 import json
-
-from sklearn.model_selection import train_test_split
 from pipelines.constants import DATASET_PATH,MIN_NUM_RATINGS
 
 def load_data():

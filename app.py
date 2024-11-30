@@ -38,7 +38,6 @@ def load_and_preprocess_data():
     print("Clustering Done!")
     return final_df, cosine_sim_df
 
-# Load preprocessed data
 final_df, cosine_sim_df = load_and_preprocess_data()
 
 def recommend_books(book_title):
@@ -55,16 +54,13 @@ def recommend_books(book_title):
         return None
 
 def plot_recommendation_metrics(metrics):
-    # Prepare data for plotting
     precision = metrics['precision']
     recall = metrics['recall']
     relevant_items = metrics['total_relevant_items']
     recommended_items = metrics['total_recommended_items']
 
-    # Create a figure with multiple subplots
     fig, axs = plt.subplots(1, 2, figsize=(12, 5))
     
-    # Precision and Recall Visualization
     labels = ['Precision', 'Recall']
     values = [precision, recall]
     
@@ -75,7 +71,6 @@ def plot_recommendation_metrics(metrics):
     for i, v in enumerate(values):
         axs[0].text(i, v, f'{v:.2f}', ha='center', va='bottom')
     
-    # Relevant vs Recommended Items
     items_data = [relevant_items, recommended_items]
     items_labels = ['Relevant Items', 'Total Recommended']
     
@@ -91,25 +86,17 @@ def plot_recommendation_metrics(metrics):
 # Streamlit App Interface
 def main():
     st.title("🚀 Intelligent Book Recommendation System")
-
-    # Text Input for Book Search
     book_name = st.text_input("Enter the book name:", "")
-
     if book_name:
         st.subheader(f"Recommended Books for '{book_name}':")
-        
-        # Get book recommendations based on the input
         result = recommend_books(book_name)
-        
         if result:
             # Create two columns for recommendations and metrics
             col1, col2 = st.columns([2, 1])
-            
             with col1:
                 # Display Recommendations
                 st.write("Recommended Books:")
                 st.dataframe(result['recommendations'])
-            
             with col2:
                 # Display Evaluation Metrics
                 st.write("Recommendation Metrics:")

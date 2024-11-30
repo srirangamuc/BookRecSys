@@ -11,7 +11,7 @@ VECTORIZER = TfidfVectorizer(stop_words=STOPWORDS)
 DATASET_PATH = "data/books.csv"
 NUM_CLUSTERS = range(1,40)
 SSE = []
-MIN_NUM_RATINGS = 2000000
+MIN_NUM_RATINGS = 1000
 CLUSTER_PARAMS = {
     "init":"random",
     "max_iter": 100,
