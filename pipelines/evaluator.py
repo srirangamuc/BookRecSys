@@ -9,7 +9,7 @@ def get_recommendations(df, title, cosine_sim, map, top_n=10):
         raise ValueError(f"Title '{title}' not found in the dataset.")
         
     book_id = map[title]
-    sim_scores = enumerate(cosine_sim[book_id])
+    sim_scores = enumerate(cosine_sim.loc[book_id])
     sorted_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)[1:top_n + 1]
     
     book_indices = [idx for idx, _ in sorted_scores]

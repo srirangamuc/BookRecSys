@@ -88,6 +88,8 @@ def main():
     st.title("🚀 Intelligent Book Recommendation System")
     book_name = st.text_input("Enter the book name:", "")
     if book_name:
+        st.write(f"You entered: {book_name}")
+        st.write(f"The cluster of the book is: {final_df[final_df['title'] == book_name]['cluster'].values[0]}")
         st.subheader(f"Recommended Books for '{book_name}':")
         result = recommend_books(book_name)
         if result:
