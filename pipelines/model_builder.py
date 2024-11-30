@@ -5,10 +5,6 @@ import numpy as np
 from kneed import KneeLocator
 import json
 
-import warnings
-from IPython.display import clear_output
-warnings.filterwarnings("ignore")
-
 class KMeans:
     def __init__(self, n_clusters=3, max_iter=100, n_init=10, random_state=None, init='random'):
         self.n_clusters = n_clusters
@@ -156,6 +152,5 @@ def find_optimal_num_of_clusters(cosine_sim_df):
         kmeans = KMeans(n_clusters=k, **CLUSTER_PARAMS)
         kmeans.fit(X)
         SSE.append(kmeans.inertia_)
-        clear_output(wait=True)
     locator = KneeLocator(NUM_CLUSTERS, SSE, curve='convex', direction='decreasing')
     print('Best Cluster for KMeans: ', locator.elbow)
